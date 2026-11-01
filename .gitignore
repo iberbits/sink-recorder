@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+*.deb
+*.wav
+*.mp3
+*.flac
