@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parent
-version = "0.9.0-3"
+version = "0.9.0-4"
 out = root / f"sink-recorder_{version}_all.deb"
 with tempfile.TemporaryDirectory(prefix="sink-recorder-") as tmp:
     pkg = Path(tmp) / "pkg"
