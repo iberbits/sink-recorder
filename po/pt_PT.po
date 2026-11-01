@@ -1,0 +1,237 @@
+# Portuguese (Portugal) translations for Sink Recorder.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the Sink Recorder project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sink Recorder 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-01 22:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_PT\n"
+"Language-Team: pt_PT <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: sink_recorder.py:109 sink_recorder.py:255
+msgid "Status: ready"
+msgstr "Estado: pronto"
+
+#: sink_recorder.py:164 sink_recorder.py:166
+msgid "About normalization"
+msgstr "Acerca da normalização"
+
+#: sink_recorder.py:168
+msgid ""
+"Raises the audio peak to −1 dBFS without equalization or compression. It may sound "
+"louder, but cannot restore lost detail. The original is kept and, when applicable, "
+"another file with the suffix _normalizado is generated."
+msgstr ""
+"Eleva o pico máximo do áudio até −1 dBFS sem equalização nem compressão. O som pode "
+"parecer mais alto, mas não recupera detalhes perdidos. O original é mantido e, quando "
+"aplicável, é criado outro ficheiro com o sufixo _normalizado."
+
+#: sink_recorder.py:184
+msgid "Device: awaiting detection"
+msgstr "Dispositivo: a aguardar deteção"
+
+#: sink_recorder.py:204
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: sink_recorder.py:205
+msgid "Select"
+msgstr "Selecionar"
+
+#: sink_recorder.py:243
+msgid "Too many files with the same name"
+msgstr "Demasiados ficheiros com o mesmo nome"
+
+#: sink_recorder.py:86
+msgid "System audio capture"
+msgstr "Captura de áudio do sistema"
+
+#: sink_recorder.py:105
+msgid "RECORDING STATUS"
+msgstr "ESTADO DA GRAVAÇÃO"
+
+#: sink_recorder.py:116 sink_recorder.py:248
+msgid "Start recording"
+msgstr "Iniciar gravação"
+
+#: sink_recorder.py:121
+msgid "Stop"
+msgstr "Parar"
+
+#: sink_recorder.py:131
+msgid "Recording settings"
+msgstr "Definições de gravação"
+
+#: sink_recorder.py:136
+msgid "File name"
+msgstr "Nome do ficheiro"
+
+#: sink_recorder.py:137
+msgid "Name or automatic date"
+msgstr "Nome ou data automática"
+
+#: sink_recorder.py:142
+msgid "Format"
+msgstr "Formato"
+
+#: sink_recorder.py:148
+msgid "Destination folder"
+msgstr "Pasta de destino"
+
+#: sink_recorder.py:149
+msgid "Choose destination folder…"
+msgstr "Escolher pasta de destino…"
+
+#: sink_recorder.py:157
+msgid "Processing"
+msgstr "Processamento"
+
+#: sink_recorder.py:159
+msgid "Normalize when finished (−1 dBFS)"
+msgstr "Normalizar ao terminar (−1 dBFS)"
+
+#: sink_recorder.py:179
+msgid ""
+"Normalizes the recording to −1 dBFS when finished. A normalized version is created, and"
+" the original recording is always kept unchanged."
+msgstr ""
+"Normaliza a gravação para −1 dBFS ao terminar. É criada uma versão normalizada e a "
+"gravação original é sempre mantida sem alterações."
+
+#: sink_recorder.py:183
+msgid "Audio source"
+msgstr "Fonte de áudio"
+
+#: sink_recorder.py:202
+msgid "Select folder"
+msgstr "Selecionar pasta"
+
+#: sink_recorder.py:232
+msgid "The destination folder does not exist"
+msgstr "A pasta de destino não existe"
+
+#: sink_recorder.py:248
+msgid "Recording…"
+msgstr "A gravar…"
+
+#: sink_recorder.py:297
+msgid "FFmpeg error:"
+msgstr "Erro FFmpeg:"
+
+#: sink_recorder.py:305
+msgid "Status: analyzing volume..."
+msgstr "Estado: a analisar o volume…"
+
+#: sink_recorder.py:390
+msgid "Status: finalizing file..."
+msgstr "Estado: a finalizar o ficheiro…"
+
+#: sink_recorder.py:447
+msgid "Wait for normalization to finish before closing"
+msgstr "Aguarde que a normalização termine antes de fechar"
+
+#: sink_recorder.py:255
+msgid "Status: recording"
+msgstr "Estado: a gravar"
+
+#: sink_recorder.py:273
+#, python-brace-format
+msgid "Device: {sink}"
+msgstr "Dispositivo: {sink}"
+
+#: sink_recorder.py:321
+msgid "Silent recording: original kept, not normalized"
+msgstr "Gravação silenciosa: original mantido, sem normalização"
+
+#: sink_recorder.py:376
+msgid "Error: audio output not found"
+msgstr "Erro: saída de áudio não encontrada"
+
+#: sink_recorder.py:424
+msgid "Status: recording (new segment after output change)"
+msgstr "Estado: a gravar (novo segmento após mudança de saída)"
+
+#: sink_recorder.py:52
+#, python-brace-format
+msgid "Warning: {css_file} not found; using the GTK theme."
+msgstr "Aviso: {css_file} não encontrado; será utilizado o tema GTK."
+
+#: sink_recorder.py:318
+msgid "Could not determine audio peak"
+msgstr "Não foi possível determinar o pico de áudio"
+
+#: sink_recorder.py:323
+msgid "Peak >= -1 dBFS: original kept, no amplification"
+msgstr "Pico >= -1 dBFS: original mantido, sem amplificação"
+
+#: sink_recorder.py:61
+#, python-brace-format
+msgid "Warning: could not load CSS: {exc}"
+msgstr "Aviso: não foi possível carregar o CSS: {exc}"
+
+#: sink_recorder.py:296
+#, python-brace-format
+msgid "FFmpeg error ({code}): {error}"
+msgstr "Erro FFmpeg ({code}): {error}"
+
+#: sink_recorder.py:299
+#, python-brace-format
+msgid "Saved: {file}"
+msgstr "Guardado: {file}"
+
+#: sink_recorder.py:315
+msgid "Error analyzing audio: "
+msgstr "Erro ao analisar o áudio: "
+
+#: sink_recorder.py:362
+#, python-brace-format
+msgid "Normalization failed (original unchanged): {error}"
+msgstr "Falha na normalização (original inalterado): {error}"
+
+#: sink_recorder.py:431
+msgid "Status: recording saved"
+msgstr "Estado: gravação guardada"
+
+#: sink_recorder.py:337
+msgid "Could not reserve a name for the normalized file"
+msgstr "Não foi possível reservar um nome para o ficheiro normalizado"
+
+#: sink_recorder.py:354
+msgid "Normalized file failed verification"
+msgstr "O ficheiro normalizado não passou na verificação"
+
+#: sink_recorder.py:355
+#, python-brace-format
+msgid "Normalized: {file} (gain +{gain:.1f} dB)"
+msgstr "Normalizado: {file} (ganho +{gain:.1f} dB)"
+
+#: sink_recorder.py:381
+#, python-brace-format
+msgid "Error starting: {error}"
+msgstr "Erro ao iniciar: {error}"
+
+#: sink_recorder.py:348
+msgid "Normalization error: "
+msgstr "Erro de normalização: "
+
+#: sink_recorder.py:426
+#, python-brace-format
+msgid "Error changing output: {error}"
+msgstr "Erro ao mudar a saída: {error}"
+
+#: sink_recorder.py:432
+#, python-brace-format
+msgid "Error closing file (code {code})"
+msgstr "Erro ao fechar o ficheiro (código {code})"
+
