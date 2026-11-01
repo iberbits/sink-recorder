@@ -1,6 +1,6 @@
 import gi
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, GLib, Gdk
+from gi.repository import Gtk, GLib, Gdk, Gio
 import subprocess
 import threading
 import os
@@ -311,12 +311,40 @@ class RecorderApp(Gtk.Application):
             self.set_ui(message=_('Saved: {file}').format(file=self.current_file))
         return False
 
+    def show_saved_dialog(self, file_path, normalized_path=None, warning=None):
+        """Show the actual recording destination after successful finalization."""
+        detail = _('Saved: {file}').format(file=file_path)
+        if normalized_path:
+            detail += '\n' + _('Normalized: {file}').format(file=normalized_path)
+        if warning:
+            detail += '\n' + warning
+        dialog = Gtk.MessageDialog(
+            transient_for=self.window, modal=True,
+            message_type=Gtk.MessageType.INFO,
+            buttons=Gtk.ButtonsType.NONE,
+            text=_('Recording completed'))
+        dialog.format_secondary_text(detail)
+        dialog.add_button(_('Close'), Gtk.ResponseType.CLOSE)
+        dialog.add_button(_('Open containing folder'), Gtk.ResponseType.ACCEPT)
+        def on_response(dlg, response):
+            dlg.destroy()
+            if response == Gtk.ResponseType.ACCEPT:
+                try:
+                    Gio.AppInfo.launch_default_for_uri(
+                        Path(file_path).resolve().parent.as_uri(), None)
+                except (OSError, GLib.Error) as exc:
+                    self.set_ui(message=_('Could not open folder: {error}').format(error=exc))
+        dialog.connect('response', on_response)
+        dialog.present()
+
     def normalize_async(self, source):
         """Procesamiento posterior: nunca modifica la grabación original."""
         self.normalizing = True
         self.set_ui(busy=True, message=_('Status: analyzing volume...'))
         def worker():
             output = None
+            normalized_path = None
+            warning = None
             try:
                 scan = subprocess.run(
                     ['ffmpeg', '-hide_banner', '-nostats', '-i', source,
@@ -364,6 +392,7 @@ class RecorderApp(Gtk.Application):
                         capture_output=True, text=True, timeout=30)
                     if verify.returncode != 0 or 'codec_type=audio' not in verify.stdout or os.path.getsize(output) == 0:
                         raise RuntimeError(_('Normalized file failed verification'))
+                    normalized_path = output
                     message = _('Normalized: {file} (gain +{gain:.1f} dB)').format(file=output, gain=gain)
             except Exception as exc:
                 if output:
@@ -372,12 +401,14 @@ class RecorderApp(Gtk.Application):
                     except OSError:
                         pass
                 message = _('Normalization failed (original unchanged): {error}').format(error=exc)
-            GLib.idle_add(self.normalization_finished, message)
+                warning = message
+            GLib.idle_add(self.normalization_finished, source, normalized_path, message, warning)
         threading.Thread(target=worker, daemon=True).start()
 
-    def normalization_finished(self, message):
+    def normalization_finished(self, source, normalized_path, message, warning):
         self.normalizing = False
         self.set_ui(message=message)
+        self.show_saved_dialog(source, normalized_path, warning)
         return False
 
     def start_recording(self, _button):
@@ -440,8 +471,11 @@ class RecorderApp(Gtk.Application):
             if proc.returncode == 0 and self.normalize_requested:
                 self.normalize_async(self.current_file)
             else:
-                self.set_ui(message=(_('Status: recording saved') if proc.returncode == 0
-                                     else _('Error closing file (code {code})').format(code=proc.returncode)))
+                if proc.returncode == 0:
+                    self.set_ui(message=_('Status: recording saved'))
+                    self.show_saved_dialog(self.current_file)
+                else:
+                    self.set_ui(message=_('Error closing file (code {code})').format(code=proc.returncode))
         return False
 
     def stop_recording(self, _button):
