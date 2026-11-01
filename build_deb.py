@@ -34,7 +34,7 @@ with tempfile.TemporaryDirectory(prefix="sink-recorder-") as tmp:
     doc = pkg / "usr/share/doc/sink-recorder"
     doc.mkdir(parents=True)
     shutil.copy2(root / "LICENSE", doc / "LICENSE")
-    (doc / "copyright").write_text("Source: https://github.com/iberbits/sink-recorder\nCopyright: 2026 Iberbits\nLicense: GPL-3.0-only\nSee LICENSE in this directory.\n")
+    (doc / "copyright").write_text("Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/\nUpstream-Name: Sink Recorder\nSource: https://github.com/iberbits/sink-recorder\n\nFiles: *\nCopyright: 2026 Iberbits\nLicense: GPL-3.0-only\n See /usr/share/doc/sink-recorder/LICENSE for the complete license text.\n\nExternal dependencies are distributed under their own licenses.\n")
     control = pkg / "DEBIAN/control"
     control.parent.mkdir(parents=True)
     control.write_text(f"Package: sink-recorder\nVersion: {version}\nSection: sound\nPriority: optional\nArchitecture: all\nMaintainer: Iberbits <262950674+iberbits@users.noreply.github.com>\nDepends: python3 (>= 3.10), python3-gi, gir1.2-gtk-4.0, ffmpeg, pulseaudio-utils\nDescription: GTK4 system audio recorder\n Records desktop audio using FFmpeg and PulseAudio-compatible sinks.\n Includes a live visualizer, optional peak normalization and translations.\n")
