@@ -323,7 +323,7 @@ class RecorderApp(Gtk.Application):
             message_type=Gtk.MessageType.INFO,
             buttons=Gtk.ButtonsType.NONE,
             text=_('Recording completed'))
-        dialog.format_secondary_text(detail)
+        dialog.set_property("secondary-text", detail)
         dialog.add_button(_('Close'), Gtk.ResponseType.CLOSE)
         dialog.add_button(_('Open containing folder'), Gtk.ResponseType.ACCEPT)
         def on_response(dlg, response):
